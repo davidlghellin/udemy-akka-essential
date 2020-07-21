@@ -1,0 +1,14 @@
+*.class
+*.log
+*.iml
+*.metals
+scalastyle-config.xml
+
+.bloop
+
+project/*
+!project/plugins.sbt
+!project/build.properties
+
+target
+.idea/*
