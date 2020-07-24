@@ -85,7 +85,35 @@ object CambioComportamientoActor extends App {
   madre ! MadreStart(estadoDelNinyo)
 
 
+  /*
+  podemos guardar los estados e ir apilandolos en la pila de estados
+  solamente tenemos que añadir al
+   context.become(enfadadoReceive,false)
+   context.become(felizReceive, false)
+  por defecto esta contengo;
+    1. feliz
+  le daremos vegetales push(tiste)
+    1. triste
+    2. feliz
+  le damos chocolate push(feliz)
+    1. feliz
+    2. triste
+    3. feliz
+   */
 
+  /*
+  Si queremos mantener los estados de digamos mas enfadado
+    def enfadadoReceive: Receive = {
+      case Comida(VEGETALES) => context.become(enfadadoReceive,false)//enfadado
+      case Comida(CHOCOLATE) => context.unbecome// cabiare mi contradlor de recepcion a feliz
+      case Pregunta(_) => sender() ! NinyoRechazar
+    }
+    Damos de comer en este orden:
+      - vegetales
+      - vegetales
+      - chocolate
+      UNBECOME ~= pop de una pila
+   */
 
 
   system.terminate()
